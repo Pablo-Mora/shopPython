@@ -17,7 +17,7 @@ def switch( ban ):
     global products
 
     if ban == 1:
-        print("NUEVO PRODUCTO")
+        print("➕ NUEVO PRODUCTO ➕")
         print("\n \n \n")
         print("Ingrese el codigo:", end="")
         codeProduct = input()
@@ -37,31 +37,38 @@ def switch( ban ):
 
         products.append(product)
 
-        print(f"Producto {nameProduct} agregado correctamente.")
+        print(f"✅ Producto {nameProduct} agregado correctamente.")
 
     elif ban == 2:
-        print("ELIMINAR PRODUCTO")
+        print("❌ ELIMINAR PRODUCTO ❌")
         print("\n \n \n")
         print("Digite el codigo:", end="")
         codeProduct = input()
         deleteConfirmation = 0
-        while deleteConfirmation != 1:
-            print("¿Desea eliminar el producto? (yes= 1/ no = 0)")
-            deleteConfirmation = int(input())
+
 
         products = [p for p in products if p['code'] != codeProduct]
-        print("Producto eliminado correctamente.")
+        print("✅ Producto encontrado")
+             
+        
+        while deleteConfirmation != 1:
+            print("⚠️ ¿Desea eliminar el producto? (yes= 1/ no = 0)")
+            deleteConfirmation = int(input())
+
+        print("✅ Producto eliminado correctamente.")
+        
 
     elif ban == 3:
-        print("LISTA DE PRODUCTOS")
+        print("📖 LISTA DE PRODUCTOS 📖")
         print("\n \n \n")
         if len(products) == 0:
-            print("No hay productos registrados.")
+            print("⚠️ No hay productos registrados.")
         else:
             for product in products:
-                print(f"Codigo: {product['code']} - \nNombre {product['name']} - \nCantidad {product['cant']} - \nPrecio {product['value']}")
+                print(f"\nNombre {product['name']} - \nCantidad {product['cant']} - \nPrecio {product['value']}")
+                print("\n \n")
     elif ban == 4:
-        print("REALIZAR FACTURA")
+        print("🧾 REALIZAR FACTURA 🧾")
         print("\n \n \n")
         idClient = None
         nameClient = None
@@ -90,7 +97,7 @@ def switch( ban ):
         invoide_number += 1
         print("... Imprimiendo Factura ...")
     elif ban == 5:
-        print("CANCELAR LA FACTURA")
+        print(" ❌ CANCELAR LA FACTURA ❌")
         print("\n \n \n")
 
         print("Ingrese el número de la factura a cancelar:")
@@ -100,17 +107,17 @@ def switch( ban ):
         for invoice in invoices:
             if invoice['invoide_id'] == cancel_invoice_id:
                 invoices.remove(invoice)
-                print(f"Factura {cancel_invoice_id:04d} cancelada corectamente.")
+                print(f"✅ Factura {cancel_invoice_id:04d} cancelada corectamente.")
                 invoice_found = True
                 break
             elif invoice_found:
-                print(f"Factura {cancel_invoice_id:04d} no encontrada.")
+                print(f"⚠️ Factura {cancel_invoice_id:04d} no encontrada.")
    
     elif ban == 6:
         print("!!Hasta luego, vuelva pronto!!")
         return False
     else:
-        print("Opcion no valida vuelva a intentar")
+        print("⚠️ Opcion no valida vuelva a intentar")
         return True
     return True
         
